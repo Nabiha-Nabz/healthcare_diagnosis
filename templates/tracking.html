@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Health Tracking{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="tracking-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Health Tracking</h1>
+            <p class="lead">Monitor your health metrics over time</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-right">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4"><i class="bi bi-plus-circle me-2 text-primary"></i> Add New Record</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Metric Type</label>
+                                <select class="form-select">
+                                    <option selected>Select metric</option>
+                                    <option>Blood Pressure</option>
+                                    <option>Heart Rate</option>
+                                    <option>Blood Sugar</option>
+                                    <option>Weight</option>
+                                    <option>Temperature</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Value</label>
+                                <input type="text" class="form-control" placeholder="Enter value">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date & Time</label>
+                                <input type="text" class="form-control datetimepicker" placeholder="Select date">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Notes</label>
+                                <textarea class="form-control" rows="3" placeholder="Any additional notes"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Record</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8" data-aos="fade-left">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4"><i class="bi bi-graph-up me-2 text-primary"></i> Health Trends</h3>
+                        <div class="chart-container" style="position: relative; height:300px;">
+                            <canvas id="healthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12" data-aos="fade-up">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4"><i class="bi bi-clock-history me-2 text-primary"></i> Recent Records</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Metric</th>
+                                        <th>Value</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2023-11-15</td>
+                                        <td>Blood Pressure</td>
+                                        <td>120/80</td>
+                                        <td>Normal reading</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-11-14</td>
+                                        <td>Weight</td>
+                                        <td>68 kg</td>
+                                        <td>Morning measurement</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-11-13</td>
+                                        <td>Blood Sugar</td>
+                                        <td>90 mg/dL</td>
+                                        <td>Fasting</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize date picker
+        flatpickr(".datetimepicker", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+        
+        // Initialize chart
+        const ctx = document.getElementById('healthChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Blood Pressure (Systolic)',
+                    data: [120, 118, 122, 119, 121, 123, 120],
+                    borderColor: '#4e73df',
+                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Blood Pressure (Diastolic)',
+                    data: [80, 78, 82, 79, 81, 83, 80],
+                    borderColor: '#1cc88a',
+                    backgroundColor: 'rgba(28, 200, 138, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

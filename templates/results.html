@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Diagnosis Results{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0 text-center"><i class="bi bi-clipboard2-data"></i> Diagnosis Results</h3>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-info">
+                    <h4 class="alert-heading"><i class="bi bi-info-circle"></i> Important Note</h4>
+                    <p>
+                        The results provided by this system are based on artificial intelligence analysis 
+                        of the symptoms you reported. They are not a substitute for professional medical 
+                        advice, diagnosis, or treatment. Always consult a qualified healthcare provider 
+                        for any health concerns.
+                    </p>
+                </div>
+                                <div class="diagnosis-result p-3 bg-white rounded shadow-sm">
+                        <div class="diagnosis-detail">
+                            <h5 class="text-primary">Diagnosis:</h5>
+                            {% if result %}
+                                {% if 'confidence:' in result %}
+                                    <p class="lead">{{ result.split('(confidence:')[0] }}</p>
+                                    <h5 class="text-primary mt-3">Confidence Level:</h5>
+                                    <p>{{ result.split('(confidence:')[1].split(')')[0] }}</p>
+                                {% else %}
+                                    <p class="lead">{{ result }}</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="lead text-danger">No diagnosis results available</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                
+                <div class="result-card p-4 mb-4 bg-light rounded">
+                    <h4 class="mb-3"><i class="bi bi-clipboard2-pulse"></i> AI Diagnosis</h4>
+                    <div class="diagnosis-result p-3 bg-white rounded shadow-sm">
+                        <div class="diagnosis-detail">
+                            <h5 class="text-primary">Diagnosis:</h5>
+                            <p class="lead">{{ result.split('(')[0] }}</p>
+                            {% if '(' in result and ')' in result %}
+                            <h5 class="text-primary mt-3">Confidence Level:</h5>
+                            <p>{{ result.split('(')[1].split(')')[0] }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="recommendations p-4 mb-4 bg-light rounded">
+                    <h4 class="mb-3"><i class="bi bi-lightbulb"></i> Recommended Actions</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex align-items-center">
+                            <input type="checkbox" class="form-check-input me-3">
+                            <span>Consult a healthcare professional for confirmation</span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <input type="checkbox" class="form-check-input me-3" checked>
+                            <span>Monitor your symptoms for any changes</span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <input type="checkbox" class="form-check-input me-3" checked>
+                            <span>Seek immediate medical attention if symptoms worsen</span>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a href="{{ url_for('symptoms') }}" class="btn btn-primary me-md-2">
+                        <i class="bi bi-clipboard2-pulse"></i> New Diagnosis
+                    </a>
+                    <a href="{{ url_for('history') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-clock-history"></i> View History
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

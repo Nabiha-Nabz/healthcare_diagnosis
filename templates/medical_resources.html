@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Medical Resources{% endblock %}
+
+{% block content %}
+<div class="resources-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Medical Resources</h1>
+            <p class="lead">Trusted medical information and resources</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6" data-aos="fade-up">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3><i class="bi bi-journal-text me-2 text-primary"></i> Articles & Guides</h3>
+                        <div class="list-group list-group-flush mt-3">
+                            <a href="https://www.mayoclinic.org/symptoms" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Understanding Common Symptoms (Mayo Clinic)
+                            </a>
+                            <a href="https://www.cdc.gov/prevention/index.html" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Preventive Healthcare Guide (CDC)
+                            </a>
+                            <a href="https://www.nhs.uk/conditions/chronic-obstructive-pulmonary-disease-copd/living-with/" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Managing Chronic Conditions (NHS)
+                            </a>
+                            <a href="https://www.hsph.harvard.edu/nutritionsource/" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Nutrition and Wellness (Harvard)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h3><i class="bi bi-heart-pulse me-2 text-primary"></i> Health Tools</h3>
+                        <div class="list-group list-group-flush mt-3">
+                            <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               BMI Calculator (NIH)
+                            </a>
+                            <a href="https://www.webmd.com/diet/healthtool-food-calorie-counter" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Calorie Counter (WebMD)
+                            </a>
+                            <a href="https://www.medisafe.com/" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Medication Tracker (Medisafe)
+                            </a>
+                            <a href="https://symptomchecker.webmd.com/" 
+                               target="_blank" 
+                               class="list-group-item list-group-item-action">
+                               Symptom Checker (WebMD)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+<div class="services-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Our Services</h1>
+            <p class="lead">Comprehensive healthcare solutions powered by AI</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto mb-4">
+                            <i class="bi bi-clipboard2-pulse fs-1"></i>
+                        </div>
+                        <h3>AI-Powered Diagnosis</h3>
+                        <p>Get accurate preliminary diagnoses based on your symptoms using our advanced machine learning models.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto mb-4">
+                            <i class="bi bi-graph-up fs-1"></i>
+                        </div>
+                        <h3>Health Tracking</h3>
+                        <p>Monitor your health metrics over time and identify trends with our comprehensive tracking system.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-0 shadow-sm h-100 hover-scale">
+                    <div class="card-body p-4 text-center">
+                        <div class="icon-box bg-primary bg-opacity-10 text-primary mx-auto mb-4">
+                            <i class="bi bi-book fs-1"></i>
+                        </div>
+                        <h3>Medical Resources</h3>
+                        <p>Access a wealth of verified medical information and resources curated by healthcare professionals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

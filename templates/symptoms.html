@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Symptom Input{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0 text-center"><i class="bi bi-clipboard2-pulse"></i> Symptom Input</h3>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('symptoms') }}" class="needs-validation" novalidate>
+                    <div class="mb-4">
+                        <label for="symptoms" class="form-label">Select Symptoms</label>
+                        <select class="form-select select2-multiple" id="symptoms" name="symptoms" multiple="multiple" required>
+                            {% for symptom in symptoms %}
+                                <option value="{{ symptom }}">{{ symptom }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            Please select at least one symptom.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="additional_info" class="form-label">Additional Information</label>
+                        <textarea class="form-control" id="additional_info" name="additional_info" rows="3" placeholder="Describe your symptoms in more detail if needed"></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-clipboard2-check"></i> Submit Symptoms
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Select2
+        $('.select2-multiple').select2({
+            theme: 'bootstrap-5',
+            placeholder: "Select your symptoms",
+            closeOnSelect: false
+        });
+        
+        // Form validation
+        const forms = document.querySelectorAll('.needs-validation');
+        
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', function(event) {
+                const symptomsSelect = document.getElementById('symptoms');
+                
+                if (symptomsSelect.selectedOptions.length === 0) {
+                    symptomsSelect.setCustomValidity('Please select at least one symptom');
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    symptomsSelect.setCustomValidity('');
+                }
+                
+                form.classList.add('was-validated');
+            }, false);
+        });
+    });
+</script>
+{% endblock %}
