@@ -1,178 +1,50 @@
-#Healthcare Diagnosis System
+# MediAI Healthcare Diagnosis Assistant
 
-Python
-Flask
-License
+MediAI is a Flask application that uses a trained Random Forest model to provide preliminary, symptom-based health information. It includes user accounts, diagnosis history, health tracking, medical resources, and an administrative dashboard.
 
-A full-stack web application designed to assist users in diagnosing common health conditions based on symptoms using machine learning. It integrates a secure and user-friendly interface with a trained Random Forest model to deliver accurate and fast medical insights.
-Features
+> **Medical disclaimer:** This educational project does not provide medical advice, diagnosis, or treatment. Its output must not replace consultation with a qualified healthcare professional.
 
-    🩺 AI-powered symptom analysis and diagnosis
+## Features
 
-    🔐 Secure user authentication with bcrypt encryption
+- Symptom-based machine-learning predictions
+- Registration, login, and protected user workflows
+- Diagnosis history and health tracking
+- Medical resources and informational pages
+- Administrative overview
 
-    📊 Health metrics tracking and visualization
+## Technology
 
-    📝 Medical history recording
+- Python and Flask
+- Flask-SQLAlchemy and Flask-Login
+- pandas and scikit-learn
+- SQLite
+- Bootstrap-based templates
 
-    🔍 Comprehensive medical resources
+## Local setup
 
-    👨‍⚕️ Admin dashboard for system management
-
-Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-    Python 3.9 or higher installed
-
-    pip package manager
-
-    MySQL or SQLite database
-
-    Git (optional)
-
-    Installation
-
-Follow these steps to set up the project:
-
-    Clone the repository (or download the source code):
-
-bash
-
-git clone https://github.com/yourusername/healthcare_diagnosis.git
+```bash
+git clone https://github.com/Nabiha-Nabz/healthcare_diagnosis.git
 cd healthcare_diagnosis
+python -m venv .venv
+```
 
-    Create and activate a virtual environment (recommended):
+Activate the environment, then run:
 
-bash
-
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-
-    Install dependencies:
-
-bash
-
+```bash
 pip install -r requirements.txt
-
-    Set up the database:
-
-bash
-
-python -c "from app import app, db; with app.app_context(): db.create_all()"
-
-    Train the machine learning model:
-
-bash
-
-python train_model.py
-
-Configuration
-
-Create a .env file in the project root with the following environment variables:
-ini
-
-SECRET_KEY=your_secret_key_here
-DATABASE_URI=sqlite:///healthcare.db  # or your MySQL URI
-
-Running the Application
-
-To start the development server:
-bash
-
 python app.py
+```
 
-For production deployment, use Gunicorn:
-bash
+The application starts at `http://127.0.0.1:5000`.
 
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
+## Model
 
-The application will be available at http://localhost:5000.
+The trained model is stored at `ml_model/model.pkl`. To rebuild it from the included symptom data, run:
 
-Project Structure
+```bash
+python ml_model/train_model.py
+```
 
-healthcare_diagnosis/
-├── app.py                # Main application entry point
-├── models.py             # Database models
-├── extensions.py         # Flask extensions initialization
-├── train_model.py        # Machine learning model training script
-├── requirements.txt      # Python dependencies
-├── .env                  # Environment configuration
-├── static/               # Static files (CSS, JS, images)
-├── templates/            # HTML templates
-│   ├── base.html         # Base template
-│   ├── index.html        # Home page
-│   ├── login.html        # Login page
-│   ├── register.html     # Registration page
-│   ├── symptoms.html     # Symptom input page
-│   ├── results.html      # Diagnosis results page
-│   ├── history.html      # Medical history page
-│   ├── admin.html        # Admin dashboard
-│   ├── about.html        # About page
-│   ├── contact.html      # Contact page
-│   ├── services.html     # Services page
-│   ├── tracking.html     # Health tracking page
-│   └── medical_resources.html # Resources page
-└── ml_model/
-    ├── model.pkl         # Trained ML model
-    └── symptoms.csv      # List of symptoms
+## Responsible use
 
-
-Usage
-
-    Register a new account or log in with existing credentials
-
-    Select symptoms from the comprehensive list
-
-    Add any additional information about your condition
-
-    Submit to receive an AI-powered diagnosis
-
-    View your diagnosis history in the dashboard
-
-    Track health metrics over time in the tracking section
-
-Admin Features
-
-Admin users (with is_admin=True in the database) can access:
-
-    User management
-
-    System statistics
-
-    Diagnosis overview
-
-Deployment
-
-For production deployment, consider:
-
-    Using a production-grade WSGI server like Gunicorn or uWSGI
-
-    Setting up a reverse proxy with Nginx or Apache
-
-    Using a proper database like MySQL or PostgreSQL
-
-    Configuring proper SSL/TLS encryption
-
-    Setting up monitoring and logging
-
-Contributing
-
-Contributions are welcome! Please follow these steps:
-
-    Fork the repository
-
-    Create a new branch (git checkout -b feature-branch)
-
-    Commit your changes (git commit -am 'Add new feature')
-
-    Push to the branch (git push origin feature-branch)
-
-    Create a new Pull Request
-
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-Disclaimer
-
-This application provides preliminary health information and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+Do not use this project for emergency decisions, clinical deployment, or handling real patient data without professional review, validation, privacy controls, and applicable regulatory compliance.
