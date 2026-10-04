@@ -8,9 +8,12 @@ import pandas as pd
 import pickle
 import bcrypt
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.getenv('SECRET_KEY', os.urandom(24))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///healthcare.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
